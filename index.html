@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-color: #ECECD2;
+		}
+		.container{
+			width:800px;
+			height:600px;
+			margin:auto;
+			position:relative;
+			background-color: #E9E6BB;
+			font-size:20px;
+			font-family:微软雅黑,Verdana;
+			border-radius:5px;
+		}
+		.welcome{
+			padding-top: 200px;
+			margin-right: 30px;
+			margin-left: 100px;
+			margin:auto;
+			text-align:center;
+			font-size:58px;
+			color:#8C972E;
+		}
+		.main{
+			position:absolute;
+			left:100px;
+			top:120px;
+			width:600px;
+			height:300px;
+			border: 2px solid #8C972E;
+			border-radius:5px;
+			display: none;
+		}
+		.info{
+			background-color: #D6D85D;
+			height:70px;
+			font-size:30px;
+			vertical-align:middle;
+			color:green;
+		}
+		.timer{
+			float:right;
+			margin-top:13px;
+			margin-right:20px;
+		}
+		.count{
+			margin-top:13px;
+			margin-left:20px;
+			float:left;
+		}
+		.pane{
+			height:160px;
+			background-color: #EFEFD6;
+			vertical-align:middle;
+			text-align:center;
+			position:relative;
+		}
+		.question{
+			position:absolute;
+			width:400px;
+			font-size:30px;
+			left:100px;
+			top:60px;
+			padding:0px;
+		}
+		.result{
+			width:80px;
+			height:30px;
+			font-size:20px;
+			margin-bottom:25px;	
+			text-align:center;
+		}
+		.btnDiv{
+			height:70px;
+			background-color: #D6D85D;
+		}
+		.questionBtn{
+			margin-left:15px;
+		}
+		.pageBtn{
+			margin-left:40px;
+		}
+		.questionBtn, .pageBtn{
+			width:100px;
+			height:35px;
+			float:left;
+			margin-top:18px;
+			font-size:18px;
+			border-radius:4px;
+			border:1px solid #89C737;
+		}
+		.subBtn{
+			margin-top:18px;
+			margin-right:15px;
+			float:right;
+			width:80px;
+			height:35px;
+			font-size:22px;
+			font-weight:600;
+			border-radius:4px;
+			border:1px solid #89C737;
+		}
+		.viewResults{
+			position:absolute;
+			left:100px;
+			top:20px;
+			width:600px;
+			height:488px;
+			display: none;
+			padding:auto;
+			margin:auto;
+			text-align:center;
+			border: 2px solid #8C972E;
+			border-radius: 5px;
+		}
+		.score{
+			width:600px;
+			height:40px;
+			background-color: #D6D85D;
+			font-size:25px;
+		}
+		.scoreSpan{
+			position:relative;
+			float:left;
+		}
+		.pageSpan{
+			position:relative;
+			float:right;
+		}
+		.detail{
+			position:absolute;
+			top:40px;
+			width:600px;
+			height=100%;
+			text-align:center;
+		}
+		.detail tr{
+			width:600px;
+		}
+		.detail td{
+			width:200px;
+		}
+		.pageBtnDiv{
+			height:70px;
+			background-color: #D6D85D;
+			position:absolute;
+			top:418px;
+			width:600px;
+			border-radius:4px;
+		}
+
+	</style>
+	<script type="text/javascript">
+		var questions = new Array();
+		var currQuestion = 1;
+		var timerId = null;
+		var correctCount = 0;
+		for(var i = 0 ; i < 100 ; i++){
+			var a = parseInt(Math.random() * 100) + 1;
+			var b = parseInt(Math.random() * 100) + 1;
+			var ops = new Array();
+			ops[0]="+";
+			ops[1]="-";
+			var operator = ops[Math.floor(ops.length*Math.random())];
+			//alert(operator);
+			questions[i]={
+				"a" : a,
+				"b" : b,
+				"operator":operator,
+				"answer" : eval(a+""+operator+""+b),
+				"userAnswer" : ""
+			}
+		}
+		var pageCount = Math.floor((questions.length-1)/10)+1;
+		var currPage = 1;
+
+		function start(){
+			var welcome = document.getElementById("welcome");
+			welcome.style.display="none";
+			var main = document.getElementById("main");
+			main.style.display="block";
+
+			getQuestion(1);
+			startTimer();
+		}
+
+		function getQuestion(currQuestionVar){
+			currQuestion = currQuestionVar;
+			var formula = document.getElementById("formula");
+			formula.innerHTML = questions[currQuestion-1].a+" "+questions[currQuestion-1].operator+" "+questions[currQuestion-1].b+" = ";
+			var result = document.getElementById("result");
+			result.value= questions[currQuestion-1].userAnswer;
+			checkAvi();
+			setCount();
+		}
+
+		function checkAvi(){
+			var firBtn=document.getElementById("firBtn");
+			var prevBtn=document.getElementById("prevBtn");
+			var nextBtn=document.getElementById("nextBtn");
+			var lastBtn=document.getElementById("lastBtn");
+
+			firBtn.disabled=false;
+			prevBtn.disabled=false;
+			nextBtn.disabled=false;
+			lastBtn.disabled=false;
+
+			if(currQuestion==1){
+				prevBtn.disabled=true;
+			}else if(currQuestion==questions.length){
+				nextBtn.disabled=true;
+			}
+		}
+
+		function setCount(){
+			var count = document.getElementById("countNum");
+			count.innerHTML=currQuestion;
+		}
+
+		function saveResult(){
+			var userResult = document.getElementById("result").value;
+			questions[currQuestion-1].userAnswer=userResult;
+		}
+
+		function startTimer(){
+			timerId = window.setInterval("getTime()",1000);
+		}
+
+		function stopTimer(){
+			window.clearInterval(timerId);
+			submit(true);
+		}
+
+		function getTime(){
+			var timer = document.getElementById("timer").innerHTML.trim().split(":");
+			var hour = timer[0];
+			var min = timer[1];
+			var sec = timer[2];
+			//alert(timer[2]);
+			if(hour=="00"&&min=="00"&&sec=="00"){
+				stopTimer();
+				//submit
+			}else if(min=="00"&&sec=="00"){
+				hour = hour-1;
+				//hour--;
+				min=59;
+				sec=59;
+			}else if(sec=="00"){
+				min=min-1;
+				//min--;
+				sec=59;
+			}else{
+				sec=sec-1;
+				//sec--;
+			}
+			if(eval("10-"+sec)>0){
+				sec="0"+sec.toString().substring(0,1);
+			}
+			if(eval("10-"+min)>0){
+				min="0"+min.toString().substring(0,1);
+			}
+			if(eval("10-"+hour)>0){
+				hour="0"+hour.toString().substring(0,1);
+			}
+			document.getElementById("timer").innerHTML=hour+":"+min+":"+sec;
+		}
+
+		function submit(flag){
+			if(flag||window.confirm("你确定要交卷吗?")){
+				//计算分数
+				for(var i=0;i<questions.length;i++){
+				if(questions[i].answer==questions[i].userAnswer){
+					correctCount++;
+					}
+				}
+				showResults(1);
+				//submit to server
+			}
+		}
+
+		function showResults(currPageVar){
+			currPage = currPageVar;
+			document.getElementById("currPage").innerHTML=currPage;
+			document.getElementById("pageCount").innerHTML=pageCount;
+			var score = correctCount/questions.length*100;
+			var detail = document.getElementById("detail");
+
+			var	viewResults= document.getElementById("viewResults");
+			viewResults.style.display="block";
+			var main = document.getElementById("main");
+			main.style.display="none";
+
+			document.getElementById("score").innerHTML=parseInt(score);
+
+			var currResults = questions.slice((currPage-1)*10,(currPage-1)*10+10);
+
+			detail.innerHTML="<tr><td>题目</td><td>提交答案</td><td>正确答案</td></tr>";
+
+			for(var i=0;i<currResults.length;i++){
+				var tr = document.createElement("tr");
+				var formulaTd = document.createElement("td");
+				var userResultTd = document.createElement("td");
+				var answerTd = document.createElement("td");
+				var formulaText = document.createTextNode(currResults[i].a+currResults[i].operator+currResults[i].b+"=");
+				var userResult = document.createTextNode(currResults[i].userAnswer.length==0?"未填写答案":currResults[i].userAnswer);
+				var answerText = document.createTextNode(currResults[i].answer);
+				formulaTd.appendChild(formulaText);
+				tr.appendChild(formulaTd);
+				userResultTd.appendChild(userResult);
+				tr.appendChild(userResultTd);
+				answerTd.appendChild(answerText);
+				tr.appendChild(answerTd);
+				if(currResults[i].userAnswer!=currResults[i].answer){
+					tr.style.color="red";
+					detail.appendChild(tr);
+				}
+			}
+			checkAvi_page();
+
+		}
+
+		function checkAvi_page(){
+			var firPageBtn = document.getElementById("firPageBtn");
+			var prevPageBtn = document.getElementById("prevPageBtn");
+			var nextPageBtn = document.getElementById("nextPageBtn");
+			var lastPageBtn = document.getElementById("lastPageBtn");
+
+			firPageBtn.disabled=false;
+			prevPageBtn.disabled=false;
+			nextPageBtn.disabled=false;
+			lastPageBtn.disabled=false;
+
+			if(currPage==1){
+				prevPageBtn.disabled=true;
+			}else if(currPage==pageCount){
+				nextPageBtn.disabled=true;
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="container" class="container">
+		<div id="welcome" class="welcome">
+			欢迎您，&nbsp;<span id="" onmouseover="this.style.color='green'" onmouseout="this.style.color='#8C972E'" onclick="start()">答题</span>! 
+		</div>
+		<div id="main" class="main">
+			<div id="info" class="info" >
+				<span id="count" class="count">第<span id="countNum">1</span>题</span>
+				<span id="timer" class="timer">00:01:00</span>
+			</div>
+			<div id="pane" class="pane">
+				<div id="question" class="question">
+					<span id="formula" class="formula">34 + 28 = </span>
+					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" />
+				</div>
+			</div>
+			<div class="btnDiv">
+				<input type="button" id="firBtn" class="questionBtn" value="第一题" onclick="getQuestion(1)" />
+				<input type="button" id="prevBtn" class="questionBtn" value="上一题" onclick="getQuestion(currQuestion-1)" />
+				<input type="button" id="nextBtn" class="questionBtn" value="下一题" onclick="getQuestion(currQuestion+1)" />
+				<input type="button" id="lastBtn" class="questionBtn" value="最后一题" onclick="getQuestion(questions.length)" />
+				<input type="button" id="subBtn" class="subBtn" value="交卷" onclick="submit(false)"/>
+			</div>
+		</div>
+		<div id="viewResults" class="viewResults">
+			<div class="score">
+				<span class="scoreSpan">分数: <span id="score"></span></span>
+				<span class="pageSpan">当前页数: <span id="currPage"></span>, 共<span id="pageCount"></span>页</span>
+			</div>
+			<div class="detail">
+				<table class="detail">
+				</table>
+				<table id="detail" border="1px"></table>
+			</div>
+			<div class="pageBtnDiv">
+				<input type="button" id="firPageBtn" class="pageBtn" value="第一页" onclick="showResults(1)" />
+				<input type="button" id="prevPageBtn" class="pageBtn" value="上一页" onclick="showResults(currPage-1)" />
+				<input type="button" id="nextPageBtn" class="pageBtn" value="下一页" onclick="showResults(currPage+1)" />
+				<input type="button" id="lastPageBtn" class="pageBtn" value="最后一页" onclick="showResults(pageCount)" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
