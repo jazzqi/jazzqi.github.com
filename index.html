@@ -224,7 +224,7 @@
 
 		function saveResult(){
 			var userResult = document.getElementById("result").value;
-			if(parseInt(userResult)!isNaN){
+			if(!(parseInt(userResult).isNaN())){
 				questions[currQuestion-1].userAnswer=userResult;
 			}else{
 				alert("当然要输入数字才行啦!");
