@@ -224,11 +224,7 @@
 
 		function saveResult(){
 			var userResult = document.getElementById("result").value;
-			if(!(parseInt(userResult).isNaN())){
-				questions[currQuestion-1].userAnswer=userResult;
-			}else{
-				alert("当然要输入数字才行啦!");
-			}
+			questions[currQuestion-1].userAnswer=userResult;
 		}
 
 		function startTimer(){
@@ -360,7 +356,8 @@
 			<div id="pane" class="pane">
 				<div id="question" class="question">
 					<span id="formula" class="formula">34 + 28 = </span>
-					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" />
+					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" onkeypress="return event.keyCode>=48&&event.keyCode<=57||event.keyCode==46" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" style="ime-mode:Disabled"
+ />
 				</div>
 			</div>
 			<div class="btnDiv">
