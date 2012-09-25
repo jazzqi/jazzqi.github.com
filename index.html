@@ -235,6 +235,7 @@
 			window.clearInterval(timerId);
 			submit(true);
 		}
+		
 
 		function getTime(){
 			var timer = document.getElementById("timer").innerHTML.trim().split(":");
@@ -341,6 +342,29 @@
 				nextPageBtn.disabled=true;
 			}
 		}
+		
+		function checkKey(e){
+			//判断是否是IE内核
+			var isIE = (document.all)?true:false;
+			//获取keycode
+			var key;
+			if(isIE){
+				key = window.event.keyCode;
+			}else{
+				key = e.which;
+			}
+			//alert(key);
+			if(key==13){
+				//alert(key);
+				if(currQuestion<questions.length){
+					getQuestion(currQuestion+1);
+				}else{
+					submit(false);
+				}
+			}
+			return (key>=48&&key<=57)||key==189||key==46||key==8;
+			//(((event.keyCode>=48)&&(event.keyCode<=57))||(event.keyCode==189)||(event.keyCode==46)+event.keyCode
+		}
 	</script>
 </head>
 <body>
@@ -356,7 +380,7 @@
 			<div id="pane" class="pane">
 				<div id="question" class="question">
 					<span id="formula" class="formula">34 + 28 = </span>
-					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" onkeypress="return event.keyCode>=48&&event.keyCode<=57||event.keyCode==189||event.keyCode==46" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" style="ime-mode:Disabled"
+					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" onkeypress="return checkKey(event)" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" style="ime-mode:Disabled"
  />
 				</div>
 			</div>
