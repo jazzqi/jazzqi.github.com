@@ -132,10 +132,14 @@
 			float:right;
 		}
 		.detail{
+			
+		}
+		#detail{
+			border-spacing:0px;
 			width:600px;
 			height=385px;
 			text-align:center;
-			border-spacing:1px;
+
 		}
 		.detail tr{
 			width:600px;
@@ -158,12 +162,15 @@
 		var currQuestion = 1;
 		var timerId = null;
 		var correctCount = 0;
+		var ops = new Array();
+		ops[0]="+";
+		ops[1]="-";
 		for(var i = 0 ; i < 100 ; i++){
 			var a = parseInt(Math.random() * 100) + 1;
 			var b = parseInt(Math.random() * 100) + 1;
-			var ops = new Array();
-			ops[0]="+";
-			ops[1]="-";
+			while(a==b){
+				b = parseInt(Math.random() * 100) + 1;
+			}
 			var operator = ops[Math.floor(ops.length*Math.random())];
 			//alert(operator);
 			questions[i]={
