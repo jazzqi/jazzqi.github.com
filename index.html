@@ -110,7 +110,6 @@
 			left:100px;
 			top:20px;
 			width:600px;
-			height:488px;
 			display: none;
 			padding:auto;
 			margin:auto;
@@ -133,23 +132,22 @@
 			float:right;
 		}
 		.detail{
-			position:absolute;
-			top:40px;
 			width:600px;
-			height=100%;
+			height=385px;
 			text-align:center;
+			border-spacing:1px;
 		}
 		.detail tr{
 			width:600px;
 		}
 		.detail td{
 			width:200px;
+			border:1px dotted #8C972E;
 		}
 		.pageBtnDiv{
 			height:70px;
 			background-color: #D6D85D;
-			position:absolute;
-			top:418px;
+			position:relative;
 			width:600px;
 			border-radius:4px;
 		}
@@ -398,9 +396,7 @@
 				<span class="pageSpan">当前页数: <span id="currPage"></span>, 共<span id="pageCount"></span>页</span>
 			</div>
 			<div class="detail">
-				<table class="detail">
-				</table>
-				<table id="detail" border="1px"></table>
+				<table id="detail" ></table>
 			</div>
 			<div class="pageBtnDiv">
 				<input type="button" id="firPageBtn" class="pageBtn" value="第一页" onclick="showResults(1)" />
