@@ -172,7 +172,6 @@
 				b = parseInt(Math.random() * 100) + 1;
 			}
 			var operator = ops[Math.floor(ops.length*Math.random())];
-			//alert(operator);
 			questions[i]={
 				"a" : a,
 				"b" : b,
@@ -323,8 +322,10 @@
 				tr.appendChild(answerTd);
 				if(currResults[i].userAnswer!=currResults[i].answer){
 					tr.style.color="red";
-					detail.appendChild(tr);
+				}else{
+					tr.style.color="green";
 				}
+				detail.appendChild(tr);
 			}
 			checkAvi_page();
 
