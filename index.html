@@ -380,16 +380,16 @@
 			}else{
 				key = e.which;
 			}
-			//alert(key);
+			// 13:Enter
 			if(key==13){
-				//alert(key);
 				if(currQuestion<questions.length){
 					getQuestion(currQuestion+1);
 				}else{
 					submit(false);
 				}
 			}
-			return (key>=48&&key<=57)||key==189||key==46||key==8;
+			// 48~57:数字 189:减号 46:Delete 8:Backspace 45:某些情况下减号的keycode为45
+			return (key>=48&&key<=57)||key==189||key==46||key==8||key==45;
 			//(((event.keyCode>=48)&&(event.keyCode<=57))||(event.keyCode==189)||(event.keyCode==46)+event.keyCode
 		}
 	</script>
