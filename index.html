@@ -397,16 +397,16 @@
 <body>
 	<div id="container" class="container">
 		<div id="welcome" class="welcome">
-			欢迎您，&nbsp;<span id="" onmouseover="this.style.color='green'" onmouseout="this.style.color='#8C972E'" onclick="start()">答题请点我</span>! 
+			欢迎答题，&nbsp;<span id="" onmouseover="this.style.color='green'" onmouseout="this.style.color='#8C972E'" onclick="start()">点我开始</span>! 
 		</div>
 		<div id="main" class="main">
 			<div id="info" class="info" >
-				<span id="count" class="count">第<span id="countNum">1</span>题</span>
-				<span id="timer" class="timer">00:01:00</span>
+				<span id="count" class="count">第<span id="countNum">9999</span>题</span>
+				<span id="timer" class="timer">00:59:59</span>
 			</div>
 			<div id="pane" class="pane">
 				<div id="question" class="question">
-					<span id="formula" class="formula">34 + 28 = </span>
+					<span id="formula" class="formula">63 - 28 = </span>
 					<input type="text" id="result" class="result" size="3" onkeyup="saveResult()" onkeypress="return checkKey(event)" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" style="ime-mode:Disabled"
  />
 				</div>
@@ -421,7 +421,7 @@
 		</div>
 		<div id="viewResults" class="viewResults">
 			<div class="score">
-				<span class="scoreSpan">分数: <span id="score"></span></span>
+				<span class="scoreSpan">答对<span id="score"></span>道</span>
 				<span class="pageSpan">当前页数: <span id="currPage"></span>, 共<span id="pageCount"></span>页</span>
 			</div>
 			<div class="detail">
