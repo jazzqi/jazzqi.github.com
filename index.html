@@ -310,8 +310,9 @@
 
 			// 一种解决方案
 			// 先遍历table清空已有结果, 然后填充进去生成的节点
-			var length = detail.rows.length;
-			for( var i = 0; i < length; i++){
+			for( var i = detail.rows.length; i > 0; i--){
+			// 使用for循环时如果需要考虑顺序, 可以采用后一种循环
+			// for(var i = 0, len = detail.rows.length; i < len; i++)
 				detail.deleteRow(0);
 			}
 			
