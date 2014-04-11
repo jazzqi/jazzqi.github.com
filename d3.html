@@ -30,7 +30,7 @@ text {
 	    		<script>var width = 1060,
 	height = 900;
 
-var color = d3.scale.category20();
+var color = d3.scale.category10();
 
 var force = d3.layout.force().linkDistance(100).linkStrength(2).charge(-300).size([width, height]);
 
@@ -38,7 +38,7 @@ var svg = d3.select("body").append("svg").attr("width", width).attr("height", he
 
 // 背景
     d3.select("body").transition().style("background-color", "grey");
-		d3.select("body").append("span").text("Hello, I am CR ");
+		d3.select("body").append("span").text("Hello, This is a Demo ");
 var graph = {
 	"links": [{
 		"source": "0",
@@ -656,15 +656,15 @@ var graph = {
 	}, {
 		"count": 3,
 		"group": "2",
-		"name": "Juno?浚?"
+		"name": "April"
 	}, {
 		"count": 2,
 		"group": "2",
-		"name": "?精甫WongChingPo"
+		"name": "香蕉"
 	}, {
 		"count": 15,
 		"group": "1",
-		"name": "苍井空"
+		"name": "Foo"
 	}, {
 		"count": 2,
 		"group": "2",
