@@ -37,7 +37,7 @@ var force = d3.layout.force().linkDistance(100).linkStrength(2).charge(-300).siz
 var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
 
 // 背景
-    d3.select("body").transition().style("background-color", "grey");
+    d3.select("body").transition().style("background-color", "#000");
 		d3.select("body").append("span").text("Hello, This is a Demo ");
 var graph = {
 	"links": [{
@@ -820,7 +820,7 @@ var graph = {
 	}, {
 		"count": 1,
 		"group": "2",
-		"name": "他回精神病院了"
+		"name": "balabala"
 	}, {
 		"count": 1,
 		"group": "2",
