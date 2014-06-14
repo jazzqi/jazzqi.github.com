@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>移动端UI组件库</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></head>
+	<link rel="stylesheet" type="text/css" href="theme/hum.css">
+	<style type="text/css">
+		body {
+			background-color: #fff;
+		}
+		h1{
+			background: #fff;
+			color: #CCC;
+			padding: 30px 0;
+			font-size: 30px;
+			text-indent: 10px;
+		}
+		button,header,.ui-summary{
+			margin-bottom: 10px;
+		}
+
+		.ui-toolbar .ui-toolbar-title {
+			color: #fff;
+			background-color: #6CBFF1;
+		}
+		.ui-toolbar .ui-btn-link {
+			color: #fff;
+		}
+
+		#level-content-panel {
+			margin-top: 30px;
+		}
+		#level-lists li{
+			height: 40px;
+			line-height: 40px;
+		}
+		#level-content-panel .level_name {
+			width: 45%;
+		}
+		#level-content-panel .level_price {
+			width: 30%;
+			text-align: center;
+		}
+		#level-content-panel .level_operation {
+			width: 25%;
+			text-align: center;
+		}
+		#level-content-panel .level_operation .ui-btn{
+			top: 5px;
+		}
+	</style>
+<body>
+	<header class="ui-toolbar">
+		<button class="ui-toolbar-btn ui-btn-link fn-left">
+			<span class="ui-icon icon-left-nav"></span>
+		</button>
+		<h1 class="ui-toolbar-title">4G可选流量包</h1>
+	</header>	
+
+	<div class="ui-panel" id="level-content-panel">
+		<ul class="ui-summary ui-summary-3">
+			<li class="ui-summary-item level_name">
+				业务档次
+			</li>
+			<li class="ui-summary-item level_price">
+				资费
+			</li>
+			<li class="ui-summary-item level_operation">
+				操作
+			</li>
+		</ul>
+
+		<ul class="ui-summary ui-summary-2" id="level-lists">
+			<li class="ui-summary-item level_name">
+				<span class="ui-summary-item-key">流量季包30元档</span>
+			</li>
+			<li class="ui-summary-item level_price">
+				<span class="ui-summary-item-key">30元/月</span>
+			</li>
+			<li class="ui-summary-item level_operation">
+				<span class="ui-summary-item-key">
+					<button class="ui-btn">办理</button>	
+				</span>
+			</li>
+
+			<li class="ui-summary-item level_name">
+				<span class="ui-summary-item-key">流量季包30元档</span>
+			</li>
+			<li class="ui-summary-item level_price">
+				<span class="ui-summary-item-key">30元/月</span>
+			</li>
+			<li class="ui-summary-item level_operation">
+				<span class="ui-summary-item-key">
+					<button class="ui-btn">办理</button>	
+				</span>
+			</li>
+
+			<li class="ui-summary-item level_name">
+				<span class="ui-summary-item-key">流量季包30元档</span>
+			</li>
+			<li class="ui-summary-item level_price">
+				<span class="ui-summary-item-key">30元/月</span>
+			</li>
+			<li class="ui-summary-item level_operation">
+				<span class="ui-summary-item-key">
+					<button class="ui-btn">办理</button>	
+				</span>
+			</li>
+		</ul>
+	</div>
+
+</body>
+<script>
+	function init(){
+		document.getElementsByClassName('ui-toolbar-btn')[0].onclick = function(){
+			window.history.back();
+		}
+
+		var busi_items = document.getElementsByClassName('ui-btn');
+		for (var i = 0, length = busi_items.length; i < length; i++ ) {
+			busi_items[i].onclick = function(){
+				window.location.href = "./business-step-3.html";
+			}
+		}
+	}
+	window.onload = init();
+</script>
+</html>

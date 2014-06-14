@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>移动端UI组件库</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></head>
+	<link rel="stylesheet" type="text/css" href="theme/hum.css">
+	<style type="text/css">
+		body {
+			background-color: #fff;
+		}
+		h1{
+			background: #fff;
+			color: #CCC;
+			padding: 30px 0;
+			font-size: 30px;
+			text-indent: 10px;
+		}
+		button,header,.ui-summary{
+			margin-bottom: 10px;
+		}
+
+		.ui-toolbar .ui-toolbar-title {
+			color: #fff;
+			background-color: #6CBFF1;
+		}
+		.ui-toolbar .ui-btn-link {
+			color: #fff;
+		}
+
+		.ui-panel-head-title .ui-icon{
+			margin-right: 5px;
+		}
+		.ui-panel-container p{
+			line-height: 30px;
+			padding: 10px;
+			text-indent: 20px;
+		}
+
+		#service-rating {
+			color:  #6CBFF1;
+		}
+		#service-suggest {
+			height: 80px;
+			border-bottom: 0;
+			text-indent: 0px;
+			text-align: center;
+			vertical-align: middle;
+		}
+		#service-suggest textarea{
+			width: 98%;
+			height: 98%;
+			padding: 5px 10px;
+		}
+		.suggest-submit {
+			height: 100%;
+			padding: 6px;
+			text-align: center;
+		}
+		.suggest-submit .ui-btn{
+			margin: 0;
+		}
+	</style>
+<body>
+	<header class="ui-toolbar">
+		<button class="ui-toolbar-btn ui-btn-link fn-left">
+			<span class="ui-icon icon-left-nav"></span>
+		</button>
+		<button class="ui-toolbar-btn ui-btn-link fn-right">
+			<span class="ui-icon icon-share"></span>
+		</button>
+		<h1 class="ui-toolbar-title">4G可选流量包</h1>
+	</header>	
+
+	<div class="ui-panel">
+		<div class="ui-panel-head fn-clear">
+			<h3 class="ui-panel-head-title">
+				<span class="ui-icon icon-info fn-left"></span>办理结果
+			</h3>
+		</div>
+
+		<div class="ui-panel-container" style="background:#ebf7fd;">
+			<p>
+			尊敬的客户，你已成功开通4G流量10元加油包1份，共计10元。中国移动全心全意为您服务！
+			</p>
+		</div>
+
+	</div>
+
+	<div class="ui-panel">
+		<div class="ui-panel-head fn-clear">
+			<h3 class="ui-panel-head-title">
+				<span class="ui-icon icon-compose fn-left"></span>体验反馈
+			</h3>
+		</div>
+
+		<div class="ui-panel-container">
+			<ul class="ui-summary ui-summary-1 ui-form ui-form-group">
+				<li class="ui-summary-item">
+					<span class="ui-summary-item-key">服务评分：</span>
+					<span id="service-rating">
+						<span class="ui-icon icon-star-filled"></span>
+						<span class="ui-icon icon-star-filled"></span>
+						<span class="ui-icon icon-star-filled"></span>
+						<span class="ui-icon icon-star-filled"></span>
+						<span class="ui-icon icon-star"></span>
+					</span>
+				</li>
+				<li class="ui-summary-item">
+					<span class="ui-summary-item-key">更多意见：</span>
+				</li>
+				<li class="ui-summary-item" id="service-suggest">
+					<textarea placeholder="您的意见对我们很重要！"></textarea>
+				</li>	
+				<li class="ui-summary-item suggest-submit">
+					<button class="ui-btn ui-btn-blue">提交</button>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+
+</body>
+<script>
+	function init(){
+		document.getElementsByClassName('ui-toolbar-btn')[0].onclick = function(){
+			window.history.back();
+		}
+	}
+	window.onload = init();
+</script>
+</html>

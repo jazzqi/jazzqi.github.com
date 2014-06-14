@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>移动端UI组件库</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></head>
+	<link rel="stylesheet" type="text/css" href="theme/hum.css">
+	<style type="text/css">
+		body {
+			background-color: #fff;
+		}
+		h1{
+			background: #fff;
+			color: #CCC;
+			padding: 30px 0;
+			font-size: 30px;
+			text-indent: 10px;
+		}
+		button,header,.ui-summary{
+			margin-bottom: 10px;
+		}
+
+		.ui-toolbar .ui-toolbar-title {
+			color: #fff;
+			background-color: #6CBFF1;
+		}
+		.ui-toolbar .ui-btn-link {
+			color: #fff;
+		}
+
+	</style>
+<body>
+	<header class="ui-toolbar">
+		<button class="ui-toolbar-btn ui-btn-link fn-left">
+			<span class="ui-icon icon-left-nav"></span>
+		</button>
+		<h1 class="ui-toolbar-title">4G可选流量包</h1>
+	</header>	
+
+	<div class="ui-panel-content">
+		<div class="ui-list-item ui-media">
+			<img class="ui-media-object fn-left" src="http://placehold.it/100x100" width="100" height="100">	
+			<div class="ui-media-body">
+				<h4>4G可选流量包</h4>
+				<p>
+					已开通 标准资费
+				</p>
+				<p>
+					<button class="ui-btn ui-btn-green">办理</button>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui-panel-content">
+		<div class="ui-tab">
+			<a class="ui-tab-item active">业务概览</a>
+			<a class="ui-tab-item">详细介绍</a>
+			<a class="ui-tab-item">温馨提示</a>
+			<a class="ui-tab-item">办理方法</a>
+		</div>
+	</div>
+
+	<div class="ui-panel">
+		<ul class="ui-summary">
+			<li class="ui-summary-item">
+				<span class="ui-summary-item-key">名称：</span>上网流量包
+			</li>
+		</ul>
+		<ul class="ui-summary ui-summary-2">
+			<li class="ui-summary-item">
+				<span class="ui-summary-item-key">热度：</span>五颗星
+			</li>
+			<li class="ui-summary-item">
+				<span class="ui-summary-item-key">品牌：</span>全球通 神州行 动感地带
+			</li>
+			<li class="ui-summary-item">
+				<span class="ui-summary-item-key">资费：</span>月费5元
+			</li>
+			<li class="ui-summary-item">
+				<span class="ui-summary-item-key">介绍：</span>含30M国内（不含港澳台）移动数据流量
+			</li>
+		</ul>
+	</div>
+
+	<div class="ui-panel">
+		<div class="ui-panel-head fn-clear">
+			<h3 class="ui-panel-head-title">推荐业务</h3>
+		</div>
+		<div class="ui-panel-container">
+			<ul class="ui-list">
+				<li class="ui-list-item">
+					<a class="icon-navigate-right">4G闲时流量包</a>
+				</li>
+				<li class="ui-list-item">
+					<a class="icon-navigate-right">移动数据功能</a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+
+</body>
+<script>
+	function init(){
+		document.getElementsByClassName('ui-toolbar-btn')[0].onclick = function(){
+			window.history.back();
+		}
+
+		document.getElementsByClassName('ui-btn-green')[0].onclick = function(){
+			window.location.href = "./business-step-2.html";
+		}
+
+	}
+	window.onload = init();
+</script>
+</html>

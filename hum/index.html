@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>移动端UI组件库</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"></head>
+	<link rel="stylesheet" type="text/css" href="theme/hum.css">
+	<style type="text/css">
+		body {
+			background-color: #fff;
+		}
+		h1{
+			background: #fff;
+			color: #CCC;
+			padding: 30px 0;
+			font-size: 30px;
+			text-indent: 10px;
+		}
+		button,header,.ui-summary{
+			margin-bottom: 10px;
+		}
+
+		.ui-search-btn {
+			height: 28px;
+		}
+		.ui-toolbar .ui-toolbar-title {
+			color: #fff;
+			background-color: #6CBFF1;
+		}
+		.ui-toolbar .ui-btn-link {
+			color: #fff;
+		}
+
+	</style>
+<body>
+	<header class="ui-toolbar">
+		<button class="ui-toolbar-btn ui-btn-link fn-left">
+			<span class="ui-icon icon-left-nav"></span>
+		</button>
+		<button class="ui-toolbar-btn ui-btn-link fn-right">
+			<span class="ui-icon icon-search"></span>
+		</button>
+		<h1 class="ui-toolbar-title">业务大全</h1>
+	</header>	
+
+	<div class="ui-search fn-hide">
+		<div class="ui-search-container">
+			<input name="keyword" type="text" class="ui-search-input" value="">	
+			<a href="javascript:void(0);" class="ui-search-close">
+				<span class="ui-icon icon-close"></span>
+			</a>
+			<a href="javascript:void(0)" class="ui-search-btn">
+				<span class="ui-icon icon-search"></span>
+			</a>
+		</div>
+	</div>
+
+	<div class="ui-panel-content">
+		<div class="ui-tab">
+			<a class="ui-tab-item active">精选</a>
+			<a class="ui-tab-item">全部</a>
+		</div>
+	</div>
+
+	<div class="ui-panel">
+		<ul class="ui-list">
+			<li class="ui-list-item ui-media">
+				<a class="icon-navigate-right">
+					<span class="ui-media-object fn-left ui-icon icon-star"></span>
+					<div class="ui-media-body">4G业务</div>
+				</a>
+			</li>
+			<li class="ui-list-item ui-media">
+				<a class="icon-navigate-right">
+					<span class="ui-media-object fn-left ui-icon icon-home"></span>
+					<div class="ui-media-body">家庭亲情网</div>
+				</a>
+			</li>
+			<li class="ui-list-item ui-media">
+				<a class="icon-navigate-right">
+					<span class="ui-media-object fn-left ui-icon icon-person"></span>
+					<div class="ui-media-body">虚拟网</div>
+				</a>
+			</li>
+			<li class="ui-list-item ui-media">
+				<a class="icon-navigate-right">
+					<span class="ui-media-object fn-left ui-icon icon-gear"></span>
+					<div class="ui-media-body">服务设置</div>
+				</a>
+			</li>
+		</ul>	
+	</div>
+
+
+
+</body>
+<script>
+	function init(){
+		document.getElementsByClassName('ui-toolbar-btn')[0].onclick = function(){
+			window.history.back();
+		}
+
+		var busi_items = document.getElementsByClassName('icon-navigate-right');
+		for (var i = 0, length = busi_items.length; i < length; i++ ) {
+			busi_items[i].onclick = function(){
+				window.location.href = "./business-step-1.html";
+			}
+		}
+	}
+	window.onload = init();
+</script>
+</html>
